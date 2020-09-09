@@ -100,7 +100,7 @@ for i in n_gram_file:
     gram_rank_dict[gram]=int(rank)
 n_gram_file.close()
 
-fi = open('training_w_tld.txt','r')
+fi = open('1-training_w_tld.txt', 'r')
 fw = open('features.txt','w')
 
 feat_dict = dict()

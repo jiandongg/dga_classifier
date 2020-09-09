@@ -29,7 +29,7 @@ private_tld_file = open('private_tld.txt','r')
 private_tld = set(f.strip() for f in private_tld_file)#black list for private tld
 private_tld_file.close()
 
-fi = open('training_w_tld.txt','r')
+fi = open('1-training_w_tld.txt', 'r')
 fw = open('gram_ranks_training.txt','w')
 fw.write('domain,class,s1,s2,s3,core\n')
 

@@ -1,4 +1,4 @@
-python tld_appender.py
+python 1-tld_appender.py
 python gram_freq_rank.py
 python feat_n_gram_rank_extractor.py
 python hmm_trainer.py
