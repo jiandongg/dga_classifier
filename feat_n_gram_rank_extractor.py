@@ -25,7 +25,7 @@ def trigrams(words):
         wprev1 = wprev2
         wprev2 = w
 
-private_tld_file = open('private_tld.txt','r')
+private_tld_file = open('2-private_tld.txt', 'r')
 private_tld = set(f.strip() for f in private_tld_file)#black list for private tld
 private_tld_file.close()
 
@@ -33,7 +33,7 @@ fi = open('1-training_w_tld.txt', 'r')
 fw = open('gram_ranks_training.txt','w')
 fw.write('domain,class,s1,s2,s3,core\n')
 
-n_gram_file = open('n_gram_rank_freq.txt','r')
+n_gram_file = open('2-n_gram_rank_freq.txt', 'r')
 gram_rank_dict = dict()
 for i in n_gram_file:
     cat,gram,freq,rank = i.strip().split(',')

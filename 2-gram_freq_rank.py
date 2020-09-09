@@ -1,9 +1,18 @@
-'''
+"""
 this script generate the reference rank list of unigram, bigram, trigram from alexa top 100k
-'''
+"""
+"""
+生成bigram/trigram的基准排名
 
+need:
+2-private_tld.txt, 私有域名列表
+2-top-100k.csv alexa 前10w的域名及其排名
+
+output:
+2-n_gram_rank_freq.txt （gram类型, gram组合, 频次, 排名）
+"""
 from collections import defaultdict
-import tldextract #TLD
+import tldextract # TLD
 
 def bigrams(words):
     wprev = None
@@ -21,20 +30,20 @@ def trigrams(words):
         wprev1 = wprev2
         wprev2 = w
 
-private_tld_file = open('private_tld.txt','r')
-private_tld = set(f.strip() for f in private_tld_file)#black list for private tld
+private_tld_file = open('2-private_tld.txt', 'r')
+private_tld = set(f.strip() for f in private_tld_file)  # black list for private tld
 private_tld_file.close()
 
 unigram_rank = defaultdict(int)
 bigram_rank = defaultdict(int)
 trigram_rank = defaultdict(int)
 
-fi = open('top-100k.csv','r')
+fi = open('2-top-100k.csv', 'r')
 for f in fi:
     rank,domain = f.strip().split(',')
     ext = tldextract.extract(domain)
     tld = ext.suffix
-    main_domain = '$'+ext.domain+'$'#add begin and end
+    main_domain = '$'+ext.domain+'$'  # add begin and end
     if tld in private_tld:
         tld_list = tld.split('.')
         tld = tld_list[-1]
@@ -48,7 +57,7 @@ for f in fi:
 
 fi.close()
 
-fw = open('n_gram_rank_freq.txt','w')
+fw = open('2-n_gram_rank_freq.txt', 'w')
 for rank,(i,freq)in enumerate(sorted(unigram_rank.iteritems(), key = lambda x:x[1], reverse = True)):
     try:
         fw.write('1,%s,%d,%d\n'%(i,freq,rank+1))

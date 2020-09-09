@@ -89,11 +89,11 @@ def hmm_prob(domain):
 
     return prob
 
-private_tld_file = open('private_tld.txt','r')
+private_tld_file = open('2-private_tld.txt', 'r')
 private_tld = set(f.strip() for f in private_tld_file)#black list for private tld
 private_tld_file.close()
 
-n_gram_file = open('n_gram_rank_freq.txt','r')
+n_gram_file = open('2-n_gram_rank_freq.txt', 'r')
 gram_rank_dict = dict()
 for i in n_gram_file:
     cat,gram,freq,rank = i.strip().split(',')
