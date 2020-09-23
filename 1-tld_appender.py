@@ -9,7 +9,7 @@ need:
 1-tld_list.txt,
 tld列表
 1-conficker_alexa_training.txt
-训练集（域名，恶意类别）（恶意（conficker算法生成）为1，不恶意（alexa前10w）为0）
+训练集（域名，恶意类别）（恶意（conficker算法生成）为1，不恶意（alexa排名）为0）
 
 output:
 1-training_w_tld.txt 训练集（域名，恶意类别，tld）

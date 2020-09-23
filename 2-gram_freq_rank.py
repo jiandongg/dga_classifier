@@ -7,8 +7,8 @@ this script generate the reference rank list of unigram, bigram, trigram from al
 生成bigram/trigram的基准排名
 
 need:
-2-private_tld.txt, 私有域名列表
-2-top-100k.csv alexa 前10w的域名及其排名
+2-private_tld.txt 私有域名列表
+2-top-100k.csv alexa前10w的域名及其排名
 
 output:
 2-n_gram_rank_freq.txt 正例域名的（gram类型, gram组合, 频次, 排名）
