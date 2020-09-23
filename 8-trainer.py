@@ -2,16 +2,20 @@ import numpy as np
 import pandas as pd
 from sklearn.svm import SVC
 
+'''
+input: 7-vectorized_feature_w_ranks_norm.txt 训练集参数总集合
+'''
+
 raw = pd.read_csv('7-vectorized_feature_w_ranks_norm.txt')
 
-X=raw.ix[:,'bi_rank':'vowel_ratio'].as_matrix()
-Y=raw.ix[:,'class'].as_matrix()
+X=raw.loc[:,'bi_rank':'vowel_ratio'].values
+Y=raw.loc[:,'class'].values
 
-domains=raw.ix[:,'ip'].as_matrix()
+domains=raw.loc[:,'ip'].values
 
 from sklearn import linear_model, decomposition, datasets
 n_samples, n_features = X.shape
-p = range(n_samples)  # Shuffle samples
+p = list(range(n_samples))  # Shuffle samples
 
 import random
 #random initialization
@@ -33,7 +37,7 @@ accuracy_list = []
 
 from sklearn.metrics import roc_curve, auc
 for i in range(10):#10 fold cross-validation
-    print 'x-validation round %d'%i
+    print ('x-validation round %d'%i)
     random.seed(i)
     random.shuffle(p)
     XX,yy = X[p],Y[p]
@@ -51,3 +55,10 @@ for i in range(10):#10 fold cross-validation
     roc_auc_list.append(roc_auc)
     pred = [int(i>0.5) for i in probas_]
     accuracy_list.append(accuracy_score(yy[cut_off:],pred,normalize=True))
+    print(precision_list)
+    print(recall_list)
+    print(area_list)
+    print(fpr_list)
+    print(tpr_list)
+    print(roc_auc_list)
+    print(accuracy_list)
