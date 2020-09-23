@@ -3,7 +3,7 @@
 import pickle
 import gib_detect_train
 
-model_data = pickle.load(open('gib_model.pki', 'rb'))
+model_data = pickle.load(open('5-gib_model.pki', 'rb'))
 
 while True:
     l = raw_input()
