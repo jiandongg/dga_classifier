@@ -7,7 +7,7 @@ input:
 
 output:
 
-4-trans_matrix.csv	双字符转移矩阵 (key1,key2,value)
+4-trans_matrix.csv	正例的双字符转移矩阵 (key1,key2,value)
 
 '''
 

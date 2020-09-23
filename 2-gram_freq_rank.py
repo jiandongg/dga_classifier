@@ -11,7 +11,7 @@ need:
 2-top-100k.csv alexa前10w的域名及其排名
 
 output:
-2-n_gram_rank_freq.txt 正例域名的（gram类型, gram组合, 频次, 排名）
+2-n_gram_rank_freq.txt 正例的（gram类型, gram组合, 频次, 排名）
 """
 
 

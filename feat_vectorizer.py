@@ -4,7 +4,7 @@ this script translate features to training table
 from collections import Counter
 from operator import itemgetter
 
-fi = open('features_norm.txt','r')
+fi = open('6-features_norm.txt', 'r')
 header = fi.readline().strip().split(',')
 header_dict = dict((j,i) for i,j in enumerate(header))
 feat_table = list()

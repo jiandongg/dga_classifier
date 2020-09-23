@@ -6,9 +6,26 @@ from itertools import groupby
 #from publicsuffix import PublicSuffixList
 import gib_detect_train
 '''
+input:
+5-gib_model.pki     语言通顺模型
+2-private_tld.txt   私有域名列表
+2-n_gram_rank_freq.txt  正例的（gram类型, gram组合, 频次, 排名）
+1-training_w_tld.txt    训练集（域名，恶意类别，tld）
+4-trans_matrix.csv  正例的双字符转移矩阵 (key1,key2,value)
 
+output:
+5-features.txt 数据集
 '''
 
+print('input:\n\
+5-gib_model.pki     语言通顺模型\n\
+2-private_tld.txt   私有域名列表\n\
+2-n_gram_rank_freq.txt  正例的（gram类型, gram组合, 频次, 排名）\n\
+1-training_w_tld.txt    训练集（域名，恶意类别，tld）\n\
+4-trans_matrix.csv  正例的双字符转移矩阵 (key1,key2,value)\n\
+\n\
+output:\n\
+5-features.txt 训练集向量')
 
 
 hmm_prob_threshold = -120
@@ -19,7 +36,6 @@ import pickle
 
 
 model_data = pickle.load(open('5-gib_model.pki', 'rb'))
-print('model_data = pickle.load(open(\'5-gib_model.pki\', \'rb\'))')
 
 #while True:
 #    l = raw_input()
@@ -90,11 +106,12 @@ def trigrams(words):
 def hmm_prob(domain):
     bigram = [''.join((i,j)) for i,j in bigrams(domain) if not i==None]
     prob = transitions[''][bigram[0]]
-    for x in xrange(len(bigram)-1):
+    for x in range(len(bigram)-1):
         next_step = transitions[bigram[x]][bigram[x+1]]
         prob*=next_step
 
     return prob
+
 
 private_tld_file = open('2-private_tld.txt', 'r')
 private_tld = set(f.strip() for f in private_tld_file)#black list for private tld
@@ -108,7 +125,7 @@ for i in n_gram_file:
 n_gram_file.close()
 
 fi = open('1-training_w_tld.txt', 'r')
-fw = open('features.txt','w')
+fw = open('5-features.txt', 'w')
 
 feat_dict = dict()
 '''

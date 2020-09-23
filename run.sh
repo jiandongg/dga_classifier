@@ -7,7 +7,7 @@ echo "have you downloaded https://github.com/rrenaud/Gibberish-Detector ? put gi
 4.5 在github上下载依赖包，然后修改其中python2的遗留问题之后，运行5-gib_detect_train.py，由此生成5-gib_model.pki
 '''
 python 5-feat_extractor.py
-python feat_normalizer.py
+python 6-feat_normalizer.py
 python feat_vectorizer.py
 
 
