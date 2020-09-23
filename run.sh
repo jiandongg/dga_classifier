@@ -8,6 +8,7 @@ echo "have you downloaded https://github.com/rrenaud/Gibberish-Detector ? put gi
 '''
 python 5-feat_extractor.py
 python 6-feat_normalizer.py
-python feat_vectorizer.py
+python 7-feat_vectorizer.py
+python 8-trainer.py
 
 

@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.svm import SVC
 
-raw = pd.read_csv('vectorized_feature_w_ranks_norm.txt')
+raw = pd.read_csv('7-vectorized_feature_w_ranks_norm.txt')
 
 X=raw.ix[:,'bi_rank':'vowel_ratio'].as_matrix()
 Y=raw.ix[:,'class'].as_matrix()
