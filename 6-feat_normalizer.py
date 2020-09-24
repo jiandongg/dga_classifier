@@ -3,7 +3,7 @@ this script reads in the feature table before vectorizing, and normalize all num
 '''
 import pandas as pd
 import numpy as np
-black_list = ['ip','class','tld']
+black_list = ['ip', 'class', 'tld']
 
 '''
 input:
@@ -32,6 +32,6 @@ for i in header:
         max_ = line.max()
         min_ = line.min()
         feat_matrix[i]=(line-mean_)/(max_-min_)
-    # print 'converted %s'%i
+    print('converted %s'%i)
 
 feat_matrix.to_csv('6-features_norm.txt')
