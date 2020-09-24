@@ -44,15 +44,22 @@ trigram_rank = defaultdict(int)
 
 fi = open('2-top-100k.csv', 'r')
 print('fi = open(\'2-top-100k.csv\', \'r\')')
+extract = tldextract.TLDExtract(include_psl_private_domains=True)
+extract.update()  # necessary until #66 is fixed
 for f in fi:
     rank, domain = f.strip().split(',')
-    ext = tldextract.extract(domain)
+    # ext = tldextract.extract(domain)  # 首先使用tldextract分割域名与tld
+    ext = extract(domain)
     tld = ext.suffix
     main_domain = '$'+ext.domain+'$'  # add begin and end
     if tld in private_tld:
+        print('tld1 = %s', tld)
+        print('main_domain1 = %s', main_domain)
         tld_list = tld.split('.')
         tld = tld_list[-1]
         main_domain = '$'+tld_list[-2]+'$'
+        print('tld2 = %s', tld)
+        print('main_domain2 = %s', main_domain)  # main_domain选取为blogspot
     for i in main_domain[1:-1]:
         unigram_rank[i] += 1
     for i in bigrams(main_domain):

@@ -35,13 +35,16 @@ tld_file.close()
 fi = open('1-conficker_alexa_training.txt', 'r')
 print('fi = open(\'1-conficker_alexa_training.txt\', \'r\')')
 
-fw = open('1-training_w_tld.txt', 'w')
+fw = open('11-training_w_tld.txt', 'w')
+
+import tldextract
 
 for f in fi:
     domain, cla = f.strip().split('\t')  # # domain为训练集域名，cla为对应标签（恶意类别）
-    match = max_match(domain, tld_list)
-    fw.write('%s\t%s\t%s\n'%(domain,cla,match))
-print('output:1-training_w_tld.txt, domain, cla, tld')
+    # match = max_match(domain, tld_list)
+    match = tldextract.extract(domain).suffix
+    fw.write('%s\t%s\t%s\n'%(domain,cla,'.'+match+'.'))
+print('output:11-training_w_tld.txt, domain, cla, tld')
 
 fw.close()
 fi.close()
