@@ -43,21 +43,25 @@ model_data = pickle.load(open('5-gib_model.pki', 'rb'))
 #    threshold = model_data['thresh']
 #    print gib_detect_train.avg_transition_prob(l, model_mat) > threshold
 
-def ave(array_):#sanity check for NaN
+
+def ave(array_):  # sanity check for NaN
     if len(array_)>0:
         return array_.mean()
     else:
         return 0
 
-def count_vowels(word):#how many a,e,i,o,u
+
+def count_vowels(word):  # how many a,e,i,o,u
     vowels=list('aeiou')
     return sum(vowels.count(i) for i in word.lower())
 
-def count_digits(word):#how many digits
+
+def count_digits(word):  # how many digits
     digits=list('0123456789')
     return sum(digits.count(i) for i in word.lower())
 
-def count_repeat_letter(word):#how many repeated letter
+
+def count_repeat_letter(word):  # how many repeated letter
     count = Counter(i for i in word.lower() if i.isalpha()).most_common()
     cnt = 0
     for letter,ct in count:
@@ -65,12 +69,14 @@ def count_repeat_letter(word):#how many repeated letter
             cnt+=1
     return cnt
 
-def consecutive_digits(word):#how many consecutive digit
+
+def consecutive_digits(word):  # how many consecutive digit
     cnt = 0
     digit_map = [int(i.isdigit()) for i in word]
     consecutive=[(k,len(list(g))) for k, g in groupby(digit_map)]
     count_consecutive = sum(j for i,j in consecutive if j>1 and i==1)
     return count_consecutive
+
 
 def consecutive_consonant(word):#how many consecutive consonant
     cnt = 0
@@ -81,11 +87,13 @@ def consecutive_consonant(word):#how many consecutive consonant
     count_consecutive = sum(j for i,j in consecutive if j>1 and i==1)
     return count_consecutive
 
+
 def std(array_):#sanity check for NaN
     if len(array_)>0:
         return array_.std()
     else:
         return 0
+
 
 def bigrams(words):
     wprev = None
@@ -93,6 +101,7 @@ def bigrams(words):
         if not wprev==None:
             yield (wprev, w)
         wprev = w
+
 
 def trigrams(words):
     wprev1 = None
@@ -103,12 +112,13 @@ def trigrams(words):
         wprev1 = wprev2
         wprev2 = w
 
+
 def hmm_prob(domain):
     bigram = [''.join((i,j)) for i,j in bigrams(domain) if not i==None]
     prob = transitions[''][bigram[0]]
     for x in range(len(bigram)-1):
         next_step = transitions[bigram[x]][bigram[x+1]]
-        prob*=next_step
+        prob *= next_step
 
     return prob
 
