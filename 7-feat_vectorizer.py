@@ -22,9 +22,9 @@ header = fi.readline().strip().split(',')
 header_dict = dict((j,i) for i,j in enumerate(header))
 feat_table = list()
 for f in fi:
-    #domain,cla,tld,entropy,f_len,norm_entropy,bigram,trigram=f.rstrip('\n').split('\t')
+    # domain,cla,tld,entropy,f_len,norm_entropy,bigram,trigram=f.rstrip('\n').split('\t')
     ll = f.rstrip('\n').split(',')
-    #dummy,domain,cla,tld,entropy,f_len,norm_entropy,vowel_ratio,uni_rank,bi_rank,tri_rank,uni_std,bi_std,tri_std=f.rstrip('\n').split(',')
+    # dummy,domain,cla,tld,entropy,f_len,norm_entropy,vowel_ratio,uni_rank,bi_rank,tri_rank,uni_std,bi_std,tri_std=f.rstrip('\n').split(',')
     feat_dict = dict()
     feature_header = header
     for f in feature_header:
@@ -74,9 +74,9 @@ fw_out = open('7-vectorized_feature_w_ranks_norm.txt', 'w')
 
 fw_out.write('ip,%s,class\n'%(','.join(feature_header)))
 
-ground_truth = [(domain,cla) for domain,cla,feat_dict in feat_table]
-for (domain,cla),feats in zip(ground_truth,feature_list):
+ground_truth = [(domain, cla) for domain, cla, feat_dict in feat_table]
+for (domain, cla), feats in zip(ground_truth, feature_list):
     joined_feats = ','.join('%.2f'%i for i in feats)
-    fw_out.write('%s,%s,%s\n'%(domain,joined_feats,cla))
+    fw_out.write('%s,%s,%s\n' %(domain, joined_feats, cla))
 
 fw_out.close()
